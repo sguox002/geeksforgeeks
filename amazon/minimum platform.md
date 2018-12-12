@@ -34,6 +34,11 @@ int minPlatforms(vector<vector<int>>& trains)
     return vplatform.size();
 }
 ```
+Above algorithm can use priority-queue to find the min.
+
+Also priority-queue can also be used to keep popping, and the left over is the required platforms.
+
+
 Another better approach:
 sort the departure time and arriving time individually and then do a merge.
 when arriving time[i]<=departure time[j], we need increase platform
