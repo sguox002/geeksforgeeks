@@ -138,6 +138,87 @@ binary search
 27. leaves to dll
 Given a Binary Tree, extract all leaves of it in a Doubly Linked List (DLL)
 
+28. Stickler Thief
+same as house robber, dp 
+
+29. Twice counter
+count those words appearing twice
+using hashmap or set
+
+30. Second most repeated string in a sequence
+hashmap. only need the most and second most
+
+31. Check if Tree is Isomorphic
+Two trees are called isomorphic if one of them can be obtained from other by a series of flips, i.e. by swapping left and right children of a number of nodes.
+using recursive approach. See leetcode 951
+compare left-left, right-right or left-right, right-left
+
+32. Vertical sum
+binary tree accumulate the sum
+using level as key build a hashmap
+
+33.Check set bits
+all is set or not,
+too simple, note the first 0 does not count
+1, 11,111,1111,11111,
+2^i-1
+
+34. Number of Groups
+choose 2 or 3 elements from the array and make the sum divisible by 3.
+mod all number by 3 and get 0, 1,2
+0 can combine with one 1 one 2 to form a 3 element
+1 and 2 can be combined with 1 pair
+for example: 1 5 7 2 9 14 after %3 it becomes 1,2,1,2,0,2, we have two 1s and 3 2s. 
+The two element groups: 2x3=6
+three 2 added: 1
+0 with 1 and 2: 2*3=6
+total=13
+
+35. Rotten Oranges
+rotten orange will rotten its surrounding oranges. the min time to rot all 
+BFS
+
+36.Find Pair Given Difference
+Given an unsorted array Arr[] and a number N. You need to write a program to find if there exists a pair of elements in the array whose difference is N.
+sort it and using hash to find a+N
+
+37.Modify Linked List-1
+Given a singly linked list containing n nodes. Modify the value of first half nodes such that 1st node’s new value is equal to the last node’s value minus first node’s current value, 2nd node’s new value is equal to the second last node’s value minus 2nd node’s current value, likewise for first half nodes. If n is odd then the value of the middle node remains unchanged.
+use two pointer, one pointer at the head, one pointer at the second half.
+
+38. Leftmost and rightmost nodes of binary tree
+Given a Binary Tree, Print the corner nodes at each level. The node at the leftmost and the node at the rightmost.
+Print the corner nodes ( nodes at the leftmost and nodes at the rightmost) at each level.
+level to level traversal.
+
+39. Count the elements
+Given two arrays A and B. Given Q queries each having a positive integer i denoting an index of the array A. For each query, your task is to find all the elements less than or equal to Ai in the array B.
+sort B and uses lower_bound
+
+40.Top k numbers in a stream
+Given N numbers in an array. Your task is to keep at-most K numbers at the top (According to their frequency).  We basically need to print top k numbers when input stream has included k distinct elements, else need to print all distinct elements sorted by frequency.
+key: stream, sorted first using frequency and then using value.
+Priority-queue is not convenient to update
+
+Iterate through the array which contains stream of numbers.
+To keep track of top k elements, make a top vector of size k+1.
+For every element in the stream increase its frequency and store it in the last position of top vector. We can use hashing for efficiently fetching frequency of an element and increasing it.
+Now find the position of element in top vector and iterate from that position to zero. For finding position we can make use of the find() function in C++ STL, it returns an iterator pointing to element if found in the vector.
+And make that list of k+1 numbers sorted according to frequency and their value.
+Print top k elements form top vector.
+Repeat the above steps for every element in the stream.
+a set of pair with own compare function will be good enough. searching is still a hard one.
+we need add another data structure to support this. a hashmap and a vector. 
+when a number is added, update the vector
+
+41. Sum equals to Sum
+Given an array A of distinct integers. The task is to find if there are two pairs (a, b) and (c, d) such that a+b = c+d, and elements of array are distinct.
+sort it to avoid a lot of pair computation
+
+
+
+
+
 
 
 
