@@ -100,6 +100,45 @@ binary search: using equal range stl
 
 18. Sum of Lengths of Non-Overlapping SubArrays
 Given an array of N elements, you are required to find the maximum sum of lengths of all non-overlapping subarrays with K as the maximum element in the subarray.
+just iterate all elements and add the length including k. This effectively avoids overlap
+
+19. Find the Highest number
+first ascending order then descending order, find peak
+using binary search. need check which side the mid point is and then shrink the searching range.
+
+20. Similar expressions
+only contains letters and + - and ()
+using stack to remove all () for both string and to see if final is the same
+
+final string: given each variable a + or - sign, check if the two map the same
+
+21. Row with minimum number of 1's
+row is sorted. using binary search
+
+22. Total number of Strings
+a,b,c a can be used any times, b can use max 1 time, c max 2 times
+string length is n
+all a: 1
+all a with 1 b: b can at any position, n
+this is easy to make mistake. using recursion is easier and also can apply to more complicated cases
+
+23. Even and odd elements at even and odd positions
+leetcode easy
+
+24 Count triplets with sum smaller than X
+sort and then use three pointers to count the triplets
+
+25. knight steps
+to target, min steps
+BFS
+
+26. Index of first 1 in a sorted array of 0’s and 1’s
+binary search
+
+27. leaves to dll
+Given a Binary Tree, extract all leaves of it in a Doubly Linked List (DLL)
+
+
 
 
 
