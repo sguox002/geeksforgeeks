@@ -212,8 +212,90 @@ we need add another data structure to support this. a hashmap and a vector.
 when a number is added, update the vector
 
 41. Sum equals to Sum
-Given an array A of distinct integers. The task is to find if there are two pairs (a, b) and (c, d) such that a+b = c+d, and elements of array are distinct.
-sort it to avoid a lot of pair computation
+Given an array A of distinct integers. The task is to find if there are two pairs (a, b) and (c, d) such that a+b = c+d, and elements of array are distinct. Array length is up to 1e5
+since number is distinct, one number adds other will not produce same result.
+just use naive solution would be fine
+
+42. Group Anagrams Together
+Given an array of words, print the count of all anagrams together in sorted order (increasing order of counts).
+For example, if the given array is {“cat”, “dog”, “tac”, “god”, “act”}, then grouped anagrams are “(dog, god) (cat, tac, act)”. So the output will be 2 3.
+anagrams are same letters, just sort each word and put in sets
+
+43. K-Sum Paths
+A binary tree and a number k are given. Print the count of every path in the tree with sum of the nodes in the path as k.
+Note: path can start and stop at any node
+always think recursion first.
+1. check the number of path with root
+2. check the number of path with left
+3. check the number of path with right
+
+Similar to dfs
+add the node into path, check left subtree, check right substree
+check the path exist k sum? This is a star problem, worth to study.
+```cpp
+int helper(Node* root, vector<int>& path,int k)
+{
+    if(!root) return 0;
+    path.push_back(root->data);
+    int ans=0;
+    ans+=helper(root->left,path,k);
+    ans+=helper(root->right,path,k);
+    int sum=0;
+    for(int j=path.size()-1;j>=0;j--)
+    {
+        sum+=path[j];
+        if(sum==k) ans++;
+    }
+    path.pop_back();
+    return ans;
+}
+```
+44. Counting elements in two arrays
+Given two unsorted arrays arr1[] and arr2[]. They may contain duplicates. For each element in arr1[] count elements less than or equal to it in array arr2[].
+since we need keep arr1's order, there is two ways:
+1. sort both array, but arr1 needs keep its original index, and then merge sort, and we get the ans
+2. sort arr2, and iterate arr1 using lower_bound
+
+45. Linked List that is Sorted Alternatingly
+one way, put it into a vector and sort then change the node value
+
+46. Uncommon characters
+simple, count each char's occurence in each string
+
+47. Maximum sum Rectangle
+this is a conventional algorithm on submatrix. 
+
+48. Game with String
+Given a string of lowercase alphabets and a number k, the task is to print the minimum value of the string after removal of ‘k’ characters. The value of a string is defined as the sum of squares of the count of each distinct character.
+apparently n^2-(n-1)^2=2n+1 so n is larger the difference is larger. 
+
+49. Extract Maximum
+You have been given an alphanumeric string S, extract maximum numeric value from that string. Alphabets will only be in lower case.
+
+50. Root to Leaf Paths
+```cpp
+void get_path(Node* root,vector<int> path,vector<vector<int>>& res)
+{
+    if(!root) return;
+    path.push_back(root->data);
+    if(!root->left && !root->right) //a leaf node
+    {
+        res.push_back(path);
+        return;
+    }
+    get_path(root->left,path,res);
+    get_path(root->right,path,res);
+    path.pop_back();
+}
+```
+
+51. Fixing Two nodes of a BST
+Two of the nodes of a Binary Search Tree (BST) are swapped. Fix (or correct) the BST.
+
+
+
+
+
 
 
 
