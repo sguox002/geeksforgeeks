@@ -455,6 +455,69 @@ see leetcode 295
 use left and right side heap and keep them balance. left side uses a priority-queue, right side uses a min heap (also a priority-queue)
 when a number is added, the number is added to left or right, and we move the top to other side.
 
+64. Rearrange characters
+easy> hashmap and iterate over all hashmap elements to see if there is item>1 left
+
+65. Length of largest region of 1's
+union find or dfs, bfs
+
+66. Check Mirror in N-ary tree
+bfs to check layer by layer to see if they are mirrored.
+
+67. Print Nodes having K leaves
+left leaves+right leaves
+```cpp
+int numLeaves(Node* root,int k,vector<int>& res)
+{
+    if(!root) return 0;
+    if(!root->left && !root->right) return 1;
+    int ans=numLeaves(root->left,k,res)+numLeaves(root->right,k,res);
+    if(ans==k) res.push_back(root->data);
+    return ans;
+}
+```
+
+68. Find whether path exist
+from source to dest with walls, check if reachable
+dfs or bfs
+
+69.Is Sudoku Valid
+unsolved sudoko matrix, check if there is a solution
+each row, each col, and each 3x3 square only uses 1-9
+use 9 bits for row, col, and grid
+for each number shown, we check if it appears on row, col, or grid. If yes, no solution, else we set the bits
+see leetcode 36
+
+70. word broogle
+Given a dictionary, a method to do lookup in dictionary and a M x N board where every cell has one character. Find all possible words that can be formed by a sequence of adjacent characters. Note that we can move to any of 8 adjacent characters, but a word should not have multiple instances of same cell.
+
+bfs search with all possible starting.
+
+71. Find all four sum numbers
+last time, we did the four sum by reducing to 2sum. Now we need get the combinations
+see leetcode 18
+sort the array and fix i<j
+if i + the largest 3 <target, we need increase i
+if i + the j, j+1, J+1> target, no more need go further
+We roughtly limit the range of i, j and then use left and right to do binary search.
+
+72. knight work
+BFS
+
+73. Merge two BST 's
+inorder traverse both tree and merge sort
+
+74. Delete keys in a Linked list
+Be sure to pay attention to head nodes
+
+75. Snake and Ladder Problem
+see leetcode 909
+not solved yet
+
+
+
+
+
 
 
 
