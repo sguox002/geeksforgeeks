@@ -319,8 +319,143 @@ we don't care the number of each letter
 We basically maintain a window of characters. Whenever the window contains all characters of given string, we shrink the window from left side to remove extra characters and then compare its length with smallest window fount so far.
 
 57. Water Overflow
-pascal triangle. dp, also appear in leetcode
-split the remaining to its left and right, 
+pascal triangle. dp, also appear in leetcode 799. Champagne Tower
+split the remaining to its left and right.
+dp: dp[i,j] represents the water for ith row, jth cup
+if dp[i,j]>1 then dp[i+1,j]=dp[i+1,j+1]=(dp[i,j]-1)/2, and dp[i,j]=1
+Note: 1. we need calculate more than 1 layer since the water will pour out when it is more than 1 or just set it 1 when it is >1
+
+
+```cpp
+double getwater(int k,int ii,int jj)
+{
+    vector<vector<double>> dp(ii+2,vector<double>(ii+1));
+    dp[1][0]=k;
+    for(int i=1;i<=ii;i++)
+    {
+        for(int j=0;j<i;j++) //has the same number as layer
+        {
+            if(dp[i][j]>1)
+            {
+                dp[i+1][j]+=(dp[i][j]-1)/2;
+                dp[i+1][j+1]+=(dp[i][j]-1)/2;
+                dp[i][j]=1;
+            }
+        }
+    }
+    return dp[ii][jj-1];
+}
+```
+
+58. k-th smallest element in BST
+inorder traversal. It may fully traverse
+```cpp
+void helper(Node* root,int &k,int& ans)
+{
+    if(!root || k<1) return;
+    helper(root->left,k,ans);
+    k--;
+    if(k==0) {ans=root->data;return;}
+    helper(root->right,k,ans);
+}
+```
+Be sure to use reference call. use count++ may be easier
+
+59.stepping number
+A number is called stepping number if all adjacent digits have an absolute difference of 1, e.g. '321' is a Stepping Number while 421 is not. Given two integers n and m, find the count of all the stepping numbers in range [n, m].
+
+for 1 digit: 0 to 9 are all ok: 10x1
+for 2 digit: 12,23,34,45,56,67,78,89 (all x2) plus 10: 8*2+1
+for 3 digits: 123,234,345,456,567,678,789 (all x2) + 210: 7*2+1
+for 4 digits: 1234,2345,3456,4567,5678,6789 (all x2) +3210: 6*2+1
+...
+for 9 digits: 123456789 (x2) plus 876543210
+there is no more for more than 9 digits
+total number: 10+8*2+1+7*2+1+6*2+1+5*2+1+4*2+1+3*2+1+2*2+1+(1*2+1)
+method1: generate all these numbers and sort. binary search is easy
+method2: brutal force checking one by one
+0123456789
+123456789
+23456789
+3456789
+456789
+56789
+6789
+789
+89
+9
+
+another approach using graph:
+for example: 5
+5->56 (5+1)
+5->54 (5-1) by appending a digit
+pay attention to the 0 and 9 at the end
+0: no digit can be added
+1->12, 1->10
+2->23, 2->21
+
+60. Top View of Binary Tree
+naive: layer by layer: if next layer is smaller, it is visible, otherwise not
+We can from left to right assign a x number to it. left is always 2n and right is always 2n+1 using full BST
+
+61. Count subsequences of type a^i b^j c^k
+Given a string s, the task is to count number of subsequences of the form aibjck, where i >= 1, j >=1 and k >= 1.
+Note: Two subsequences are considered different if the set of array indexes picked for the 2 subsequences are different
+
+We traverse given string. For every character encounter, we do following:
+
+1) Initialize counts of different subsequences caused by different combination of ‘a’. Let this count be aCount.
+
+2) Initialize counts of different subsequences caused by different combination of ‘b’. Let this count be bCount.
+
+3) Initialize counts of different subsequences caused by different combination of ‘c’. Let this count be cCount.
+
+4) Traverse all characters of given string. Do following for current character s[i]
+    If current character is ‘a’, then there are following possibilities :
+    a) Current character begins a new subsequence.
+    b) Current character is part of aCount subsequences.
+    c) Current character is not part of aCount subsequences.
+    Therefore we do aCount = (1 + 2 * aCount);
+
+    If current character is ‘b’, then there are following possibilities :
+    a) Current character begins a new subsequence of b’s with aCount subsequences.
+    b) Current character is part of bCount subsequences.
+    c) Current character is not part of bCount subsequences.
+    Therefore we do bCount = (aCount + 2 * bCount);
+
+    If current character is ‘c’, then there are following possibilities :
+    a) Current character begins a new subsequence of c’s with bCount subsequences.
+    b) Current character is part of cCount subsequences.
+    c) Current character is not part of cCount subsequences.
+    Therefore we do cCount = (bCount + 2 * cCount);
+
+5) Finally we return cCount;
+```cpp
+int countSub(string& s)
+{
+    int acount=0,bcount=0,ccount=0;
+    for(int i=0;i<s.size();i++)
+    {
+        if(s[i]=='a') acount=1+2*acount;
+        else if(s[i]=='b') bcount=acount+2*bcount;
+        else if(s[i]=='c') ccount=bcount+2*ccount;
+    }
+    return ccount;
+}
+```
+62. First non-repeating character in a stream
+note: it needs the first non-repeating so far. actually we shall maintain a data structure of all those non-repeating char,
+When we found a repeat, that one needs goes to top and popped.
+use a linked list to easy remove, but hard to find.
+
+63.Find median in a stream
+the stored data structure shall be sorted to find the median easily. 
+linked list easy to insert, but hard to find.
+see leetcode 295
+use left and right side heap and keep them balance. left side uses a priority-queue, right side uses a min heap (also a priority-queue)
+when a number is added, the number is added to left or right, and we move the top to other side.
+
+
 
 
 
