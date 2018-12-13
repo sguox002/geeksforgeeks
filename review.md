@@ -292,9 +292,35 @@ void get_path(Node* root,vector<int> path,vector<vector<int>>& res)
 51. Fixing Two nodes of a BST
 Two of the nodes of a Binary Search Tree (BST) are swapped. Fix (or correct) the BST.
 
+inorder traversal got the sorted array. find the two nodes and swap.
+1. not ajacent in inorder traversal, two conflicts
+2. adjacent in inorder traversal, one flicts
+
+we don't need to store all the numbers but only need to store the conflicts.
+
+We will maintain three pointers, first, middle and last. When we find the first point where current node value is smaller than previous node value, we update the first with the previous node & middle with the current node. When we find the second point where current node value is smaller than previous node value, we update the last with the current node. In case #2, we will never find the second point. So, last pointer will not be updated. After processing, if the last node value is null, then two swapped nodes of BST are adjacent.
 
 
+52. Find a pair with given target in BST
+traversal and put them into hashmap.
 
+53. AVL Tree Deletion
+not familiar, need revisit
+
+54.Huffman Encoding
+not familiar, need revisit
+
+55. Polynomial Addition
+add the coeff with the same power, we can iterate the linked list and store the information in hashmap
+
+56. Smallest distinct window
+the window contains all the letters in the string
+we don't care the number of each letter
+We basically maintain a window of characters. Whenever the window contains all characters of given string, we shrink the window from left side to remove extra characters and then compare its length with smallest window fount so far.
+
+57. Water Overflow
+pascal triangle. dp, also appear in leetcode
+split the remaining to its left and right, 
 
 
 
