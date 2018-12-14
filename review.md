@@ -512,7 +512,55 @@ Be sure to pay attention to head nodes
 
 75. Snake and Ladder Problem
 see leetcode 909
-not solved yet
+Due to the numbering, it does not relate to a 2D matrix, we can convert it to a 1D array and then do a bfs
+
+76. Hamiltonian Path
+
+A Hamiltonian path, is a path in an undirected or directed graph that visits each vertex exactly once. Given an undirected graph  the task is to check if a Hamiltonian path is present in it or not.
+so we can start from any node if it is hamiltonian path.
+using recursive to add node by node and reduce to smaller problem
+if the node is not connected, cannot be added
+if the node is already added, cannot be added
+basically a dfs approach with memoization
+
+77. Solve the Sudoku
+see leetcode 37
+too hard, need revisit
+
+78. Rat in a Maze Problem ***
+this is a typical dfs with backtracking.
+Normal: try all directions and check if the direction can be a solution. 
+if it cannot be a solution, we need mark it as failure.
+
+79. N-queen problem
+leetcode 51/52
+try row by row
+column, right diagonal, left diagonal
+
+80. AVL Tree Insertion
+need refresh
+
+81. Box Stacking (this shall be hard)
+this is a bit similar to the russian doll (leetcode) in 3D case with a complexity: you can rotate the box.
+1) A box can be placed on top of another box only if both width and depth of the upper placed box are smaller than width and depth of the lower box respectively.
+2) We can rotate boxes such that width is smaller than depth. For example, if there is a box with dimensions {1x2x3} where 1 is height, 2×3 is base, then there can be three possibilities, {1x2x3}, {2x1x3} and {3x1x2}
+3) We can use multiple instances of boxes. What it means is, we can have two different rotations of a box as part of our maximum height stack.
+1) Generate all 3 rotations of all boxes. The size of rotation array becomes 3 times the size of original array. For simplicity, we consider depth as always smaller than or equal to width.
+
+2) Sort the above generated 3n boxes in decreasing order of base area.
+
+3) After sorting the boxes, the problem is same as LIS with following optimal substructure property.
+MSH(i) = Maximum possible Stack Height with box i at top of stack
+MSH(i) = { Max ( MSH(j) ) + height(i) } where j < i and width(j) > width(i) and depth(j) > depth(i).
+If there is no such j then MSH(i) = height(i)
+
+4) To get overall maximum height, we return max(MSH(i)) where 0 < i < n
+
+82. LRU cache
+leetcode 147. need nested data structure
+
+
+
 
 
 
